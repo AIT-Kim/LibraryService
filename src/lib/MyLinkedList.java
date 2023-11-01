@@ -78,6 +78,7 @@ public class MyLinkedList<T> implements IMyLinkedList<T>, Iterable<T>, Cloneable
         return size;
     }
 
+    @Override
     // метод для добавления всех элементов из другого списка
     public void addAll(MyLinkedList<T> other) {
         Node<T> current = other.head;
@@ -87,10 +88,12 @@ public class MyLinkedList<T> implements IMyLinkedList<T>, Iterable<T>, Cloneable
         }
     }
 
+    @Override
     // метод для удаления элементов, удовлетворяющих предикату
-    public void removeIf(Predicate<T> filter) {
+    public boolean removeIf(Predicate<T> filter) {
         Node<T> current = head;
         Node<T> prev = null;
+        boolean isRemoved = false;
         while (current != null) {
             if (filter.test(current.data)) {
                 if (prev == null) {
@@ -99,12 +102,15 @@ public class MyLinkedList<T> implements IMyLinkedList<T>, Iterable<T>, Cloneable
                     prev.next = current.next;
                 }
                 size--;
+                isRemoved = true;
             } else {
                 prev = current;
             }
             current = current.next;
         }
+        return isRemoved;
     }
+
 
     // Метод для клонирования списка
     @Override

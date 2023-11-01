@@ -139,15 +139,8 @@ public class BookRepository implements IBookRepository {
 
     @Override
     public synchronized int returnBook(int bookId, int userId) {
-        Iterator<BorrowedBookInfo> iterator = borrowedBooks.iterator();
-        while (iterator.hasNext()) {
-            BorrowedBookInfo borrowedBookInfo = iterator.next();
-            if (borrowedBookInfo.getBookId() == bookId && borrowedBookInfo.getUserId() == userId) {
-                iterator.remove();
-                return 0;
-            }
-        }
-        return -1;
+        boolean removed = borrowedBooks.removeIf(b -> b.getBookId() == bookId && b.getUserId() == userId);
+        return removed ? 0 : -1;
     }
 
 
