@@ -487,7 +487,7 @@ public class LibraryConsoleApplication {
         System.out.println("Книги, взятые вами:");
         for (int i = 0; i < borrowedBooks.size(); i++) {
             Book book = borrowedBooks.get(i);
-            System.out.println((i + 1) + ". " + book.getTitle() + " - " + book.getAuthor() + " (" + book.getPublicationYear() + ")");
+            System.out.println((i + 1) + ". " + book.getId() + " - " + book.getTitle() + " - " + book.getAuthor() + " (" + book.getPublicationYear() + ")");
         }
     }
 
