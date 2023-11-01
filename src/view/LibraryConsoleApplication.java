@@ -168,7 +168,7 @@ public class LibraryConsoleApplication {
                     listAvailableBooks();
                     break;
                 case 6:
-                    //listBorrowedBooks();
+                    listBorrowedBooks();
                     break;
                 case 7:
                     listBooksByAuthor(scanner);
@@ -420,6 +420,19 @@ public class LibraryConsoleApplication {
         System.out.println("Доступные книги:");
         for (int i = 0; i < availableBooks.size(); i++) {
             Book book = availableBooks.get(i);
+            System.out.println((i + 1) + ". " + book.getTitle() + " - " + book.getAuthor() + " (" + book.getPublicationYear() + ")");
+        }
+    }
+
+    private void listBorrowedBooks() {
+        IMyArrayList<Book> borrowedBooks = libraryService.getAllBorrowedBooks();
+        if (borrowedBooks.size() == 0) {
+            System.out.println("Нет взятых книг.");
+            return;
+        }
+        System.out.println("Взятые книги:");
+        for (int i = 0; i < borrowedBooks.size(); i++) {
+            Book book = borrowedBooks.get(i);
             System.out.println((i + 1) + ". " + book.getTitle() + " - " + book.getAuthor() + " (" + book.getPublicationYear() + ")");
         }
     }
