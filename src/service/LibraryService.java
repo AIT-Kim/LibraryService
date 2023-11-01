@@ -93,7 +93,7 @@ public class LibraryService implements ILibraryService {
     public int borrowBook(int userId, int bookId) {
         int result = bookRepository.borrowBook(userId, bookId);
         if (result == -1) {
-            throw new RuntimeException("Книга уже взята");
+            throw new RuntimeException("Книга уже взята"); //TODO
         }
         return result;
     }
@@ -103,7 +103,7 @@ public class LibraryService implements ILibraryService {
     public int returnBook(int userId, int bookId) {
         int result = bookRepository.returnBook(userId, bookId);
         if (result == -1) {
-            throw new RuntimeException("Эту книгу нельзя вернуть");
+            throw new RuntimeException("Эту книгу нельзя вернуть"); //TODO
         }
         return result;
     }
@@ -161,7 +161,7 @@ public class LibraryService implements ILibraryService {
     public User getUserOfBorrowedBook(Book book) {
         BorrowedBookInfo borrowedInfo = bookRepository.getBorrowedInfoByBookId(book.getId());
         if (borrowedInfo == null) {
-            throw new RuntimeException("Книга не взята");
+            throw new RuntimeException("Книга не взята"); //TODO
         }
         return userRepository.getUserById(borrowedInfo.getUserId());
     }
@@ -170,7 +170,7 @@ public class LibraryService implements ILibraryService {
     public String getBorrowDateOfBook(Book book) {
         BorrowedBookInfo borrowedInfo = bookRepository.getBorrowedInfoByBookId(book.getId());
         if (borrowedInfo == null) {
-            throw new RuntimeException("Книга не взята");
+            throw new RuntimeException("Книга не взята"); //TODO
         }
         return borrowedInfo.getBorrowedDate().toString();
     }
@@ -179,7 +179,7 @@ public class LibraryService implements ILibraryService {
     public void setBorrowDateOfBook(Book book, String newBorrowDate) {
         BorrowedBookInfo borrowedInfo = bookRepository.getBorrowedInfoByBookId(book.getId());
         if (borrowedInfo == null) {
-            throw new RuntimeException("Книга не взята");
+            throw new RuntimeException("Книга не взята"); //TODO
         }
         borrowedInfo.setBorrowedDate(LocalDate.parse(newBorrowDate));
     }
@@ -189,7 +189,7 @@ public class LibraryService implements ILibraryService {
     public int getDaysBookWithUser(Book book) {
         BorrowedBookInfo borrowedInfo = bookRepository.getBorrowedInfoByBookId(book.getId());
         if (borrowedInfo == null) {
-            throw new RuntimeException("Книга не взята");
+            throw new RuntimeException("Книга не взята"); //TODO
         }
         return (int) ChronoUnit.DAYS.between(borrowedInfo.getBorrowedDate(), LocalDate.now());
     }
