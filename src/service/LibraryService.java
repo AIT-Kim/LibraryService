@@ -92,9 +92,6 @@ public class LibraryService implements ILibraryService {
     @Override
     public int borrowBook(int userId, int bookId) {
         int result = bookRepository.borrowBook(userId, bookId);
-        if (result == -1) {
-            throw new RuntimeException("Книга уже взята"); //TODO
-        }
         return result;
     }
 
@@ -102,9 +99,6 @@ public class LibraryService implements ILibraryService {
     @Override
     public int returnBook(int userId, int bookId) {
         int result = bookRepository.returnBook(userId, bookId);
-        if (result == -1) {
-            throw new RuntimeException("Эту книгу нельзя вернуть"); //TODO
-        }
         return result;
     }
 
